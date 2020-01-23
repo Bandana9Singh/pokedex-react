@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Pokemon from '../Pokemon/pokemon.js'
 //This component will make call to PokeApi
 export default class Pokeframe extends React.Component {
     //Store states here, constructor get called first when the component is created
@@ -25,13 +25,14 @@ export default class Pokeframe extends React.Component {
             <div>
                 <div>Render Poke-Frame</div>
                 <div>
-                    <ul>
+                    <ol>
                         { this.state.pokemons.map((pokemon,index) =>
                             <li key={index}>
-                                {pokemon.name}
-                            </li>    
+                                {pokemon.name} :
+                                <Pokemon url={pokemon.url}></Pokemon>
+                            </li>
                         )}
-                    </ul>
+                    </ol>
                 </div>
             </div>
         )
