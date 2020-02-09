@@ -1,9 +1,9 @@
 import React from 'react';
 import Pokemon from '../Pokemon/pokemon.js';
 import './pokeframe.css';
-//This component will make call to PokeApi
+//This component will make call to PokeApi, class based component
 export default class Pokeframe extends React.Component {
-    //Store states here, constructor get called first when the component is created
+    //Store states here, constructor is called first when the component is created
     constructor() {
         super();
         this.state = { 
@@ -29,7 +29,7 @@ export default class Pokeframe extends React.Component {
                     <ul>
                         { this.state.pokemons.map((pokemon,index) =>
                             <li key={index}>
-                                <Pokemon name ={pokemon.name} url={pokemon.url}></Pokemon>
+                                <Pokemon name ={pokemon.name} url={pokemon.url}/>
                             </li>
                         )}
                     </ul>
