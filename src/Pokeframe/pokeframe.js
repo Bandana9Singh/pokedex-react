@@ -16,7 +16,6 @@ export default class Pokeframe extends React.Component {
         .then(res => res.json())
         .then(response => {
             this.setState({pokemons: response.results});
-            console.log(this.state);
         })
     }
     //Call the methods with ES6 annotation, render is mandatory for components, others are optional
