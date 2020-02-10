@@ -12,7 +12,7 @@ export default class Pokeframe extends React.Component {
     }
     //Called after DOM load. Initialisation that require DOM nodes, can go here.
     componentDidMount() {
-        fetch("https://pokeapi.co/api/v2/pokemon/")
+        fetch("https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20")
         .then(res => res.json())
         .then(response => {
             this.setState({pokemons: response.results});

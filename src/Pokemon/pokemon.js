@@ -7,13 +7,17 @@ import axios from 'axios';
 **/
 const Pokemon = (props) => {
     //React hook for state
-    const [pokemonCard, setPokemonCard] = useState({});
+    const [pokemonCard, setPokemonCard] = useState({
+        dataArray: {}
+    });
     //React hooks for componentDidMount
     useEffect(() => {
         axios.get(props.url)
         .then(function(response) {
             console.log(response);
-
+            setPokemonCard({
+                dataArray: response.data
+            })
         })
         .catch(function(error) {
             console.log(error);
@@ -21,8 +25,7 @@ const Pokemon = (props) => {
     });
     return (
         <div>
-            <div>{props.name}</div>
-            <div>{props.url}</div>
+            <div>{pokemonCard.dataArray.name}</div>
         </div>
     )
 }
