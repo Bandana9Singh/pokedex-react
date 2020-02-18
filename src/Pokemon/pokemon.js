@@ -10,19 +10,22 @@ const Pokemon = (props) => {
     const [pokemonCard, setPokemonCard] = useState({
         dataArray: {}
     });
-    //React hooks for componentDidMount
+    /** useEffect hook is called each time the virutal DOM is loaded. It covers all the component lifecycle events. Hence the code from previous commit was adding infite ajax calls.
+      * Equivalent of componentDidUpdate and componentDidMount in one effect. 
+      * To limit the useEffect call to only when this function is called, use the second variable (props.url). It essentially tells, call useEffect when certain prop changes.
+      */  
     useEffect(() => {
         axios.get(props.url)
         .then(function(response) {
-            console.log(response);
             setPokemonCard({
                 dataArray: response.data
             })
+            console.log(response);
         })
         .catch(function(error) {
             console.log(error);
         })
-    });
+    }, [props.url]);
     return (
         <div>
             <div>{pokemonCard.dataArray.name}</div>
