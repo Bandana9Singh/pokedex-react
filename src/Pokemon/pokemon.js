@@ -13,6 +13,7 @@ const Pokemon = (props) => {
     /** useEffect hook is called each time the virutal DOM is loaded. It covers all the component lifecycle events. Hence the code from previous commit was adding infite ajax calls.
       * Equivalent of componentDidUpdate and componentDidMount in one effect. 
       * To limit the useEffect call to only when this function is called, use the second variable (props.url). It essentially tells, call useEffect when certain prop changes.
+      * If want to load this first time, leave the second parameter as empty array i.e to get the componentDidMount effect
       */  
     useEffect(() => {
         axios.get(props.url)
@@ -20,16 +21,13 @@ const Pokemon = (props) => {
             setPokemonCard({
                 dataArray: response.data
             })
-            console.log(response);
         })
         .catch(function(error) {
             console.log(error);
         })
     }, [props.url]);
     return (
-        <div>
-            <div>{pokemonCard.dataArray.name}</div>
-        </div>
+        <div>{pokemonCard.dataArray.name}</div>
     )
 }
 export default Pokemon;

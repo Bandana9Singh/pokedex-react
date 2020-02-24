@@ -1,4 +1,5 @@
 import React from 'react';
+//import {Container, Row, Col} from 'react-bootstrap';
 import Pokemon from '../Pokemon/pokemon.js';
 import './pokeframe.css';
 //This component will make call to PokeApi, class based component
@@ -7,17 +8,46 @@ export default class Pokeframe extends React.Component {
     constructor() {
         super();
         this.state = { 
-            pokemons: []
+            pokemons: [], 
+            pageNumber: 0,
+            pageOffset: 0
         }
     }
-    //Called after DOM load. Initialisation that require DOM nodes, can go here.
+    /* Called after DOM load. Initialisation that require DOM nodes, can go here.
+     * As per the pokeapi.io, to fetch next 20 results set offset. Bydeafult showing 20 resource in a page. 
+     **/
     componentDidMount() {
-        fetch("https://pokeapi.co/api/v2/pokemon")
+        this.getAllPokemon();
+    }
+
+    getAllPokemon = () => {
+        fetch(`https://pokeapi.co/api/v2/pokemon?offset=${this.state.pageOffset}`)
         .then(res => res.json())
         .then(response => {
             this.setState({pokemons: response.results});
         })
     }
+
+    // method called on clicking the previous button
+    previousButtonHandler = () => {
+        console.log("Previous Was clicked");
+        this.setState({
+            pageNumber: this.state.pageNumber - 1,
+            pageOffset: this.state.pageNumber * 20
+        })
+        this.getAllPokemon();
+    }
+
+    // method called on clicking the next button
+    nextButtonHandler = () => {
+        console.log("Next Was clicked");
+        this.setState({
+            pageNumber: this.state.pageNumber + 1,
+            pageOffset: this.state.pageNumber * 20
+        })
+        this.getAllPokemon();
+    }
+
     //Call the methods with ES6 annotation, render is mandatory for components, others are optional
     render = () => {
         return (
@@ -31,6 +61,8 @@ export default class Pokeframe extends React.Component {
                             </li>
                         )}
                     </ul>
+                    <button onClick={this.previousButtonHandler}>Previous</button>
+                    <button onClick={this.nextButtonHandler}>Next</button>
                 </div>
             </div>
         )
