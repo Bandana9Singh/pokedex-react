@@ -21,7 +21,6 @@ const Pokemon = (props) => {
             setPokemonCard({
                 dataArray: response.data
             })
-            console.log(response);
         })
         .catch(function(error) {
             console.log(error);

@@ -32,8 +32,8 @@ export default class Pokeframe extends React.Component {
     previousButtonHandler = () => {
         console.log("Previous Was clicked");
         this.setState({
-            pageNumber: this.pageNumber - 1,
-            pageOffset: this.pageNumber * 20
+            pageNumber: this.state.pageNumber - 1,
+            pageOffset: this.state.pageNumber * 20
         })
         this.getAllPokemon();
     }
@@ -42,8 +42,8 @@ export default class Pokeframe extends React.Component {
     nextButtonHandler = () => {
         console.log("Next Was clicked");
         this.setState({
-            pageNumber: this.pageNumber + 1,
-            pageOffset: this.pageNumber * 20
+            pageNumber: this.state.pageNumber + 1,
+            pageOffset: this.state.pageNumber * 20
         })
         this.getAllPokemon();
     }
