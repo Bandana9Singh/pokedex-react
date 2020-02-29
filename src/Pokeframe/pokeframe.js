@@ -1,5 +1,4 @@
 import React from 'react';
-//import {Container, Row, Col} from 'react-bootstrap';
 import Pokemon from '../Pokemon/pokemon.js';
 import './pokeframe.css';
 //This component will make call to PokeApi, class based component
@@ -54,13 +53,15 @@ export default class Pokeframe extends React.Component {
             <div>
                 <div>Render Poke-Frame</div>
                 <div>
-                    <ul>
-                        { this.state.pokemons.map((pokemon,index) =>
-                            <li key={index}>
-                                <Pokemon name ={pokemon.name} url={pokemon.url}/>
-                            </li>
-                        )}
-                    </ul>
+                    <div className="container">
+                        <div className="row">
+                            { this.state.pokemons.map((pokemon,index) =>
+                                <div className="col-sm-3" key={index}>
+                                    <Pokemon name ={pokemon.name} url={pokemon.url}/>
+                                </div>
+                            )}
+                        </div>
+                    </div>
                     <button onClick={this.previousButtonHandler}>Previous</button>
                     <button onClick={this.nextButtonHandler}>Next</button>
                 </div>
