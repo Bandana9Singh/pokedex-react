@@ -29,7 +29,6 @@ export default class Pokeframe extends React.Component {
 
     // method called on clicking the previous button
     previousButtonHandler = () => {
-        console.log("Previous Was clicked");
         this.setState({
             pageNumber: this.state.pageNumber - 1,
             pageOffset: this.state.pageNumber * 20
@@ -39,7 +38,6 @@ export default class Pokeframe extends React.Component {
 
     // method called on clicking the next button
     nextButtonHandler = () => {
-        console.log("Next Was clicked");
         this.setState({
             pageNumber: this.state.pageNumber + 1,
             pageOffset: this.state.pageNumber * 20
@@ -51,7 +49,7 @@ export default class Pokeframe extends React.Component {
     render = () => {
         return (
             <div>
-                <div>Render Poke-Frame</div>
+                <div>gotta catch em all</div>
                 <div>
                     <div className="container">
                         <div className="row">
