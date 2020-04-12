@@ -9,9 +9,9 @@ const Pokemon = (props) => {
     //React hook for state
     const [pokemonCard, setPokemonCard] = useState({
         //dataArray will not hold the nested data to display, create a corresponding object/array into it to read the nested values.
-        dataArray: {
+        //dataArray: {
             sprites: {}
-        }
+        //}
     });
     /** useEffect hook is called each time the virutal DOM is loaded. It covers all the component lifecycle events. Hence the code from previous commit was adding infite ajax calls.
       * Equivalent of componentDidUpdate and componentDidMount in one effect. 
@@ -22,18 +22,24 @@ const Pokemon = (props) => {
         axios.get(props.url)
         .then(function(response) {
             setPokemonCard({
-                dataArray: response.data
+                sprites: response.data.sprites
             })
-            console.log(response.data);
         })
         .catch(function(error) {
             console.log(error);
         })
     }, [props.url]);
+
+    function tileClickHandler() {
+        alert("Clicked");
+    }
+
     return (
         <div>
-            <img src={pokemonCard.dataArray.sprites.front_default} />
-            <span>{pokemonCard.dataArray.name}</span>
+            <a href="#" onClick={tileClickHandler}>
+                <img src={pokemonCard.sprites.front_default} />
+                <span>{props.name}</span>
+            </a>    
         </div>
     )
 }
