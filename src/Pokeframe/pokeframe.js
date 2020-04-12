@@ -50,24 +50,6 @@ export default class Pokeframe extends React.Component {
             pageOffset: this.state.pageOffset + 15
         });
     }
-    /* Remove Pagination event handlers
-    // method called on clicking the previous button
-    previousButtonHandler = () => {
-        this.setState({
-            pageNumber: this.state.pageNumber - 1,
-            pageOffset: this.state.pageNumber * 20
-        })
-        this.getAllPokemon();
-    }
-
-    // method called on clicking the next button
-    nextButtonHandler = () => {
-        this.setState({
-            pageNumber: this.state.pageNumber + 1,
-            pageOffset: this.state.pageNumber * 20
-        })
-        this.getAllPokemon();
-    } */
 
     //Call the methods with ES6 annotation, render is mandatory for components, others are optional
     render = () => {
@@ -79,14 +61,11 @@ export default class Pokeframe extends React.Component {
                         <div className="row">
                             { this.state.pokemons.map((pokemon,index) =>
                                 <div className="col-sm-4 justify-content-center my-5" key={index}>
-                                    <Pokemon name ={pokemon.name} url={pokemon.url}/>
+                                    <Pokemon name={pokemon.name} url={pokemon.url}/>
                                 </div>
                             )}
                         </div>
                     </div>
-                    {/* Remove pagination and add infite scroll instead. 
-                    <button onClick={this.previousButtonHandler}>Previous</button>
-                    <button onClick={this.nextButtonHandler}>Next</button> */}
                 </div>
             </div>
         )
