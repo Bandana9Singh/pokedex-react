@@ -8,10 +8,11 @@ export default class Pokeframe extends React.Component {
         super();
         this.state = { 
             pokemons: [], 
+            scrolledPokemon: [],
             pageNumber: 0,
             pageOffset: 0, 
             limit: 15, 
-            isFetching: false
+            isFetching: false,
         }
     }
     /* Called after DOM load. Initialisation that require DOM nodes, can go here.
@@ -33,7 +34,9 @@ export default class Pokeframe extends React.Component {
         fetch(`https://pokeapi.co/api/v2/pokemon?limit=${this.state.limit}&offset=${this.state.pageOffset}`)
         .then(res => res.json())
         .then(response => {
-            this.setState({pokemons: response.results});
+            //Add the list to an empty array to keep adding new list
+            this.state.scrolledPokemon.push(...response.results);
+            this.setState({pokemons: this.state.scrolledPokemon});
         });
         //Set isFetching to false, very imp
         this.setState({isFetching: false});
