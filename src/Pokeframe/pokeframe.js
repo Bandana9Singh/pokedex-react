@@ -1,6 +1,8 @@
 import React from 'react';
+
 import Pokemon from '../Pokemon/pokemon.js';
 import './pokeframe.css';
+
 //This component will make call to PokeApi, class based component
 export default class Pokeframe extends React.Component {
     //Store states here, constructor is called first when the component is created

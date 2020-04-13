@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 /* Function component(stateless component), for passing the props.
@@ -10,7 +11,8 @@ const Pokemon = (props) => {
     const [pokemonCard, setPokemonCard] = useState({
         //dataArray will not hold the nested data to display, create a corresponding object/array into it to read the nested values.
         //dataArray: {
-            sprites: {}
+            sprites: {},
+            id: 0
         //}
     });
     /** useEffect hook is called each time the virutal DOM is loaded. It covers all the component lifecycle events. Hence the code from previous commit was adding infite ajax calls.
@@ -22,7 +24,8 @@ const Pokemon = (props) => {
         axios.get(props.url)
         .then(function(response) {
             setPokemonCard({
-                sprites: response.data.sprites
+                sprites: response.data.sprites,
+                id: response.data.id
             })
         })
         .catch(function(error) {
@@ -30,16 +33,12 @@ const Pokemon = (props) => {
         })
     }, [props.url]);
 
-    function tileClickHandler() {
-        alert("Clicked");
-    }
-
     return (
         <div>
-            <a href="#" onClick={tileClickHandler}>
-                <img src={pokemonCard.sprites.front_default} />
+            <Link to={'/' + pokemonCard.id}>
+                <img src={pokemonCard.sprites.front_default} alt={props.name}/>
                 <span>{props.name}</span>
-            </a>    
+            </Link>
         </div>
     )
 }
