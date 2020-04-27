@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
+import './detailedView.css';
 
 //We get the props from the Route on App.js file. We get the id as it will be used in ajax call for specific Pokemon detail
 const DetailedView = (props) => {
@@ -10,7 +11,11 @@ const DetailedView = (props) => {
         height: '',
         weight: '', 
         types: [],
-        abilities: []
+        abilities: [], 
+        stats: [{
+            base_stat: 0,
+            stat: {}
+        }]
     });
 
     useEffect(() => {
@@ -24,7 +29,8 @@ const DetailedView = (props) => {
                     height: response.data.height,
                     weight: response.data.weight,
                     types: response.data.types,
-                    abilities: response.data.abilities
+                    abilities: response.data.abilities,
+                    stats: response.data.stats
                 })
             })
             .catch(function(error) {
@@ -36,9 +42,10 @@ const DetailedView = (props) => {
         <div className="container">
             <div className="row">
                 <div className="col-sm-4">
+                    <div class="pokemon-image"></div>
                     <img src={pokemonDetail.sprites.front_default} alt={pokemonDetail.name}/> 
                 </div>
-                <div className="col-sm-4">
+                <div className="col-sm-4 section--left-alignment">
                     <div><span>Name:</span> {pokemonDetail.name}</div>
                     <div><span>Height:</span> {pokemonDetail.height}</div>
                     <div><span>Weight:</span> {pokemonDetail.weight}</div>
@@ -57,8 +64,13 @@ const DetailedView = (props) => {
                         </ul>
                     </div>
                 </div>
-                <div className="col-sm-4">
-                    <span>Stats</span>
+                <div className="col-sm-4 section--left-alignment">
+                    <span>Stats:</span>
+                    <ul>
+                        { pokemonDetail.stats.map((statIterator, index) => 
+                            <li key={index}><span>{statIterator.stat.name}: </span>{statIterator.base_stat}</li>
+                        )}
+                    </ul>
                 </div>
             </div>    
         </div>
