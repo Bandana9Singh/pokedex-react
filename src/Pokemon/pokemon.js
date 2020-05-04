@@ -35,7 +35,7 @@ const Pokemon = (props) => {
 
     return (
         <div>
-            <Link to={'/' + pokemonCard.id}>
+            <Link to={'/pokedex-react/' + pokemonCard.id}>
                 <img src={pokemonCard.sprites.front_default} alt={props.name}/>
                 <span>{props.name}</span>
             </Link>
