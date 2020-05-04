@@ -10,8 +10,8 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Route path="/" exact component={Pokeframe}/>
-        <Route path="/pokedex-react" component={Pokeframe}/>
-        <Route path="/:pokemonId" component={DetailedView}/>  
+        <Route path="/pokedex-react" exact component={Pokeframe}/>
+        <Route path="/pokedex-react/:pokemonId" exact component={DetailedView}/>  
       </div>
     </BrowserRouter>
   );
