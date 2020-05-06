@@ -11,7 +11,7 @@ function App() {
       <div className="App">
         <Route path="/" exact component={Pokeframe}/>
         <Route path="/pokedex-react" exact component={Pokeframe}/>
-        <Route path="/pokedex-react/:pokemonId" exact component={DetailedView}/>  
+        <Route path="/:pokemonId" exact component={DetailedView}/>  
       </div>
     </HashRouter>
   );
