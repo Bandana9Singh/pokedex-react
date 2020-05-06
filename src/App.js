@@ -7,7 +7,7 @@ import DetailedView from './DetailedView/detailedView.js';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <div className="App">
         <Route path="/" exact component={Pokeframe}/>
         <Route path="/pokedex-react" exact component={Pokeframe}/>
