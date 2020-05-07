@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
+
 import './detailedView.css';
+import EvolutionCards from '../EvolutionCards/evolutionCards.js';
 
 //We get the props from the Route on App.js file. We get the id as it will be used in ajax call for specific Pokemon detail
 const DetailedView = (props) => {
@@ -71,7 +73,10 @@ const DetailedView = (props) => {
                         )}
                     </ul>
                 </div>
-            </div>    
+            </div> 
+            <div className="row">
+                <EvolutionCards name={pokemonDetail.name}/>
+            </div>   
         </div>
     )
   }
