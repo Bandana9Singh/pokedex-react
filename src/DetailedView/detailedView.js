@@ -75,7 +75,7 @@ const DetailedView = (props) => {
                 </div>
             </div> 
             <div className="row">
-                <EvolutionCards name={pokemonDetail.name}/>
+                <EvolutionCards pokemonId={props.match.params.pokemonId}/>
             </div>   
         </div>
     )
