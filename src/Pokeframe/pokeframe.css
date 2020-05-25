@@ -1,3 +1,14 @@
 ul {
     list-style: none;
 }
+
+.title {
+    font-family: "Flexo-Medium",arial,sans-serif;
+    color: #606060;
+    float: left;
+    font-size: 125%;
+    font-weight: bold;
+    margin-top: 0.5em;
+    width: 100%;
+    word-break: break-word;
+}
