@@ -47,17 +47,17 @@ const DetailedView = (props) => {
                     <div className="pokemon-image" style={{backgroundImage:`url(${pokemonDetail.sprites.front_default})`}}></div>
                 </div>
                 <div className="col-sm-4 section--left-alignment">
-                    <div><span>Name:</span> {pokemonDetail.name}</div>
-                    <div><span>Height:</span> {pokemonDetail.height}</div>
-                    <div><span>Weight:</span> {pokemonDetail.weight}</div>
+                    <div><span className="title">Name: </span><span>{pokemonDetail.name}</span></div>
+                    <div><span className="title">Height:</span><span>{pokemonDetail.height}</span></div>
+                    <div><span className="title">Weight:</span><span>{pokemonDetail.weight}</span></div>
                     <div>
-                        <span>Type:</span>
+                        <span className="title">Type:</span>
                         <ul>
                             { pokemonDetail.types.map((type,index) =>
                                 <li key={index}>{type.type.name}</li>
                             )}
                         </ul>
-                        <span>Ability:</span>
+                        <span className="title">Ability:</span>
                         <ul>
                             { pokemonDetail.abilities.map((ability,index) =>
                                 <li key={index}>{ability.ability.name}</li>
@@ -66,7 +66,7 @@ const DetailedView = (props) => {
                     </div>
                 </div>
                 <div className="col-sm-4 section--left-alignment">
-                    <span>Stats:</span>
+                    <span className="title">Stats:</span>
                     <ul>
                         { pokemonDetail.stats.map((statIterator, index) => 
                             <li key={index}><span>{statIterator.stat.name}: </span>{statIterator.base_stat}</li>
@@ -74,9 +74,7 @@ const DetailedView = (props) => {
                     </ul>
                 </div>
             </div> 
-            <div className="row">
-                <EvolutionCards pokemonId={props.match.params.pokemonId}/>
-            </div>   
+            <EvolutionCards pokemonId={props.match.params.pokemonId}/>
         </div>
     )
   }

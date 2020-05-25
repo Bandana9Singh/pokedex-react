@@ -6,9 +6,7 @@ const EvolutionCards = (props) => {
         evolution_chain: {}
     });
     const [pokemonEvolution, setPokemonEvolution] = useState({
-        evolution_array: [{
-            pokemon_name: ''
-        }]
+        evolution_array: []
     });
 
     useEffect(() => {
@@ -35,14 +33,32 @@ const EvolutionCards = (props) => {
         }
     }, [evolutionURL.evolution_chain.url]);
 
-    function getEvolutionArray(object) {
+    function getEvolutionArray(evolutionObject) {
         //While loop for iterating the chain goes here.....
+        var evolution_array_temp = [];
+        while(true) {
+            console.log(evolutionObject.species.name);
+            console.log(evolutionObject);
+            evolution_array_temp.push(evolutionObject.species.name)
+            if(evolutionObject.evolves_to.length < 1) {
+                break;
+            }
+            evolutionObject = evolutionObject.evolves_to[0];
+        }
+        setPokemonEvolution({
+            evolution_array : evolution_array_temp
+        })
     }
 
     return (
         <div>
-            {evolutionURL.evolution_chain.url}
-        </div>
+            <span className="title">Evolution chain:</span>
+            <div className="row">
+                { pokemonEvolution.evolution_array.map((evolutionArrayIterator, index) => 
+                    <div className="col-sm-4 section--center-alignment" key={index}><span>{evolutionArrayIterator}</span></div>
+                )}    
+            </div>
+        </div>    
     )
 }
 export default EvolutionCards;
