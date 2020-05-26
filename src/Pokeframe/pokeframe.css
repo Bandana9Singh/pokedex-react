@@ -12,3 +12,8 @@ ul {
     width: 100%;
     word-break: break-word;
 }
+
+img {
+    width: 80%;
+    margin: 10%;
+}

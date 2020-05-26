@@ -8,7 +8,6 @@ import EvolutionCards from '../EvolutionCards/evolutionCards.js';
 //We get the props from the Route on App.js file. We get the id as it will be used in ajax call for specific Pokemon detail
 const DetailedView = (props) => {
     const [pokemonDetail, setPokemonDetail] = useState({
-        sprites: {},
         name: '',
         height: '',
         weight: '', 
@@ -20,13 +19,16 @@ const DetailedView = (props) => {
         }]
     });
 
+    const [kantoImage, setKantoImage] = useState ({
+        image_src: ''
+    });
+
     useEffect(() => {
         if (props.match.params.pokemonId) {
             var id = props.match.params.pokemonId;
             axios.get(`https://pokeapi.co/api/v2/pokemon/` + id)
             .then(function(response) {
                 setPokemonDetail({
-                    sprites: response.data.sprites,
                     name: response.data.name,
                     height: response.data.height,
                     weight: response.data.weight,
@@ -38,13 +40,18 @@ const DetailedView = (props) => {
             .catch(function(error) {
                 console.log(error);
             })
+            setKantoImage({
+                image_src: "https://pokeres.bastionbot.org/images/pokemon/" + id + ".png"
+            })
         }
-    }, [props.match.params.pokemonId])
+    }, [props.match.params.pokemonId]);
+
     return (
         <div className="container">
             <div className="row">
                 <div className="col-sm-4">
-                    <div className="pokemon-image" style={{backgroundImage:`url(${pokemonDetail.sprites.front_default})`}}></div>
+                    <img src={kantoImage.image_src} alt={pokemonDetail.name}/>
+                    {/*<div className="pokemon-image" style={{backgroundImage:`url(${pokemonDetail.sprites.front_default})`}}></div>*/}
                 </div>
                 <div className="col-sm-4 section--left-alignment">
                     <div><span className="title">Name: </span><span>{pokemonDetail.name}</span></div>

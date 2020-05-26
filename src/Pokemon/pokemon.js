@@ -11,10 +11,13 @@ const Pokemon = (props) => {
     const [pokemonCard, setPokemonCard] = useState({
         //dataArray will not hold the nested data to display, create a corresponding object/array into it to read the nested values.
         //dataArray: {
-            sprites: {},
             id: 0
         //}
     });
+    const [kantoImage, setKantoImage] = useState ({
+        image_src: ''
+    });
+
     /** useEffect hook is called each time the virutal DOM is loaded. It covers all the component lifecycle events. Hence the code from previous commit was adding infite ajax calls.
       * Equivalent of componentDidUpdate and componentDidMount in one effect. 
       * To limit the useEffect call to only when this function is called, use the second variable (props.url). It essentially tells, call useEffect when certain prop changes.
@@ -24,9 +27,11 @@ const Pokemon = (props) => {
         axios.get(props.url)
         .then(function(response) {
             setPokemonCard({
-                sprites: response.data.sprites,
                 id: response.data.id
-            })
+            });
+            setKantoImage({
+                image_src: "https://pokeres.bastionbot.org/images/pokemon/" + response.data.id + ".png"
+            });
         })
         .catch(function(error) {
             console.log(error);
@@ -36,8 +41,8 @@ const Pokemon = (props) => {
     return (
         <div>
             <Link to={'/' + pokemonCard.id}>
-                <img src={pokemonCard.sprites.front_default} alt={props.name}/>
-                <span>{props.name}</span>
+                <img src={kantoImage.image_src} alt={props.name}/>
+                <span className="title">{props.name}</span>
             </Link>
         </div>
     )
