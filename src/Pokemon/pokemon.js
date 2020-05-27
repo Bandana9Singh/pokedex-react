@@ -42,7 +42,7 @@ const Pokemon = (props) => {
         <div>
             <Link to={'/' + pokemonCard.id}>
                 <img src={kantoImage.image_src} alt={props.name}/>
-                <span className="title">{props.name}</span>
+                <span className="title"> #{pokemonCard.id} {props.name}</span>
             </Link>
         </div>
     )
