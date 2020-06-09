@@ -19,7 +19,7 @@ const EvolutionCards = (props) => {
         .catch(function(error) {
             console.log(error);
         })
-    }, []);
+    }, [props.id]);
 
     useEffect(() => {
         if (evolutionURL.evolution_chain.url) {
@@ -37,9 +37,11 @@ const EvolutionCards = (props) => {
         //While loop for iterating the chain goes here.....
         var evolution_array_temp = [];
         while(true) {
-            console.log(evolutionObject.species.name);
-            console.log(evolutionObject);
-            evolution_array_temp.push(evolutionObject.species.name)
+            evolution_array_temp.push({
+                name: evolutionObject.species.name,
+                id: evolutionObject.species.url.split("pokemon-species")[1].match(/\d+/),
+                image: "https://pokeres.bastionbot.org/images/pokemon/" + evolutionObject.species.url.split("pokemon-species")[1].match(/\d+/) + ".png"
+            }) 
             if(evolutionObject.evolves_to.length < 1) {
                 break;
             }
@@ -55,7 +57,10 @@ const EvolutionCards = (props) => {
             <span className="title">Evolution chain:</span>
             <div className="row">
                 { pokemonEvolution.evolution_array.map((evolutionArrayIterator, index) => 
-                    <div className="col-sm-4 section--center-alignment" key={index}><span>{evolutionArrayIterator}</span></div>
+                    <div className="col-sm-4 section--center-alignment" key={index}>
+                        <img src={evolutionArrayIterator.image} alt={evolutionArrayIterator.name}/>
+                        <span>{evolutionArrayIterator.name}</span>
+                    </div>
                 )}    
             </div>
         </div>    
