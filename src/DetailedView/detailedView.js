@@ -51,7 +51,6 @@ const DetailedView = (props) => {
             <div className="row">
                 <div className="col-sm-4">
                     <img src={kantoImage.image_src} alt={pokemonDetail.name}/>
-                    {/*<div className="pokemon-image" style={{backgroundImage:`url(${pokemonDetail.sprites.front_default})`}}></div>*/}
                 </div>
                 <div className="col-sm-4 section--left-alignment">
                     <div><span className="title">Name: </span><span>{pokemonDetail.name}</span></div>
